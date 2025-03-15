@@ -9,7 +9,7 @@ from moshi.models import loaders
 from tokenizers.processors import TemplateProcessing
 from transformers import AutoTokenizer
 from watermarking import CSM_1B_GH_WATERMARK, load_watermarker, watermark
-
+import time
 
 @dataclass
 class Segment:
@@ -144,7 +144,7 @@ class Generator:
                 break  # eos
 
             samples.append(sample)
-
+            print("tick")
             curr_tokens = torch.cat([sample, torch.zeros(1, 1).long().to(self.device)], dim=1).unsqueeze(1)
             curr_tokens_mask = torch.cat(
                 [torch.ones_like(sample).bool(), torch.zeros(1, 1).bool().to(self.device)], dim=1
