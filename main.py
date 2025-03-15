@@ -9,7 +9,6 @@ from fastapi.responses import FileResponse
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 import hashlib
-# 加载声学统计数据
 import datetime
 import uvicorn
 import re
@@ -131,6 +130,6 @@ if __name__ == '__main__':
     print("[tts] ready")
     print("[tunnel] Setting up Ngrok Tunnel")
     public_url = ngrok.connect(5001).public_url
-    print("f[tunnel] ngrok url: {public_url}")
+    print(f"[tunnel] ngrok url: {public_url}")
     print("[server] ready for connections")
     uvicorn.run(app, host=args.host, port=args.port)
